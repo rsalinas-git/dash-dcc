@@ -111,15 +111,18 @@ st.text("Analizar opción de clasificar por Grupo de Investigación...")
 #*********************************************************
 #st.header(' ')
 
-st.subheader("Análisis por año")
+st.subheader("Análisis personalizado...")
 # Declaramos los parámetros en la barra lateral
-#with st.sidebar:
+with st.sidebar:
     # Filtro de Año de publicación
-parAno=st.selectbox('Año',options=dfDatos['anio_publicacion'].unique(),index=0)
+    parAno=st.selectbox('Año',options=dfDatos['anio_publicacion'].unique(),index=0)
     # Filtro de  Tipo de publicación
     #parMes = st.selectbox('Tipo',options=dfDatos['tipo_publicacion'].unique(),index=0)
     # Filtro por Autor
     #parAutor = st.multiselect('Autor',options=dfDatos['autores'].unique())
+
+    # Filtro por Autor
+    parAutor = st.selectbox('Autor',options=dfDatos['autores'].unique())
 
 # Si hay parametros seleccionados aplicamos los filtros
 if parAno:
@@ -150,8 +153,6 @@ with c3:
 
 st.subheader("Análisis por Autor")
 
-    # Filtro por Autor
-parAutor = st.selectbox('Autor',options=dfDatos['autores'].unique())
 
 ...
 
