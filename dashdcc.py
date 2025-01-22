@@ -5,14 +5,14 @@ import plotly.express as px
 
 # Definimos los parámetros de configuración de la aplicación
 st.set_page_config(
-    page_title="Dashboard DCC 2025", #Título de la página
+    page_title="DCC Dashboard 2025", #Título de la página
     page_icon="📊", # Ícono
     layout="wide", # Forma de layout ancho o compacto
     initial_sidebar_state="expanded" # Definimos si el sidebar aparece expandido o colapsado
 )
 
 #TITULO PRINCIPAL DEL DASHBOARD *******************
-st.title('Departamento de Ciencias de la Computación - Universidad de Cuenca')
+st.title('Departamento de Ciencias de la Computación - UCuenca')
 
 # VISTA GENERAL DE LOS RESULTADOS **************
 st.header('Estadísticas Generales')
@@ -87,7 +87,7 @@ st.plotly_chart(fig_area, use_container_width=True)
 publications_by_author = dfDatos.groupby('autores').size().reset_index(name='Publicaciones')
 
 # Sort by publications (descending)
-publications_by_author_sorted = publications_by_author.sort_values('Publicaciones', ascending=False)
+publications_by_author_sorted = publications_by_author.sort_values('Publicaciones', ascending=True)
 
 # Display using a bar chart
 fig_publications_by_author = px.bar(
@@ -111,7 +111,7 @@ st.text("Analizar opción de clasificar por Grupo de Investigación...")
 #*********************************************************
 #st.header(' ')
 
-st.subheader("Análisis personalizado...")
+st.subheader("Estadísticas personalizadas")
 # Declaramos los parámetros en la barra lateral
 with st.sidebar:
     # Filtro de Año de publicación
@@ -120,9 +120,12 @@ with st.sidebar:
     #parMes = st.selectbox('Tipo',options=dfDatos['tipo_publicacion'].unique(),index=0)
     # Filtro por Autor
     #parAutor = st.multiselect('Autor',options=dfDatos['autores'].unique())
-
     # Filtro por Autor
     parAutor = st.selectbox('Autor',options=dfDatos['autores'].unique())
+    st.text("Base de datos externas")
+    st.page_link("https://www.scopus.com/pages/organization/60072035", label="Scopus", icon="🌎")
+
+
 
 # Si hay parametros seleccionados aplicamos los filtros
 if parAno:
@@ -152,7 +155,4 @@ with c3:
     st.plotly_chart(fig_pub_autor, use_container_width=True)
 
 st.subheader("Más resultados...")
-
-
-...
 
