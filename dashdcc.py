@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 #TITULO PRINCIPAL DEL DASHBOARD *******************
-st.title('DCC-UCuenca')
+st.title('Departamento de Ciencias de la Computación - Universidad de Cuenca')
 
 # VISTA GENERAL DE LOS RESULTADOS **************
 st.header('Estadísticas Generales')
