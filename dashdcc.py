@@ -151,7 +151,7 @@ with c3:
                           title='Publicaciones según Autor', color='autores')
     st.plotly_chart(fig_pub_autor, use_container_width=True)
 
-st.subheader("Análisis por Autor")
+st.subheader("Más resultados...")
 
 
 ...
