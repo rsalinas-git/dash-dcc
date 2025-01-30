@@ -1,3 +1,5 @@
+#Se requiere instalar estos completementos previos, verificar versiones en Requirements.txt
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -17,6 +19,7 @@ st.title('Departamento de Ciencias de la Computación - UCuenca')
 # VISTA GENERAL DE LOS RESULTADOS **************
 st.header('Estadísticas Generales')
 
+# La idea es aquí en la lectura obtener el dataset desde una hoja de GoogleSheets, por ahora se ha hecho local...
 # Cargamos el dataframe desde un CSV
 dfDatos = pd.read_csv('DBDCC25.csv', sep=';', encoding='latin-1')
 dfDatos['indexacion'] = dfDatos['indexacion'].replace(['', 'N/A', 'None', ' '], 'Por definir') # Replace all these with "Por definir"
@@ -90,6 +93,7 @@ publications_by_author = dfDatos.groupby('autores').size().reset_index(name='Pub
 publications_by_author_sorted = publications_by_author.sort_values('Publicaciones', ascending=True)
 
 # Display using a bar chart
+
 fig_publications_by_author = px.bar(
     publications_by_author_sorted, 
     y='autores',  # Authors on the y-axis for better readability with long names
@@ -110,7 +114,7 @@ st.text("Analizar opción de clasificar por Grupo de Investigación...")
 
 #*********************************************************
 #st.header(' ')
-
+#Se añade una barra lateral que sirve para filtrar, se deberá establer búsquedas por periodos, autor, conferencias, paises,etc... (analizar con DCC)
 st.subheader("Estadísticas personalizadas")
 # Declaramos los parámetros en la barra lateral
 with st.sidebar:
@@ -155,4 +159,7 @@ with c3:
     st.plotly_chart(fig_pub_autor, use_container_width=True)
 
 st.subheader("Más resultados...")
+
+#Además Deberá existir una sección para Proyectos de Investigación y para Proyectos de Vinculación
+
 
